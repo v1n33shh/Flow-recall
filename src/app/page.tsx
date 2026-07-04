@@ -290,7 +290,7 @@ export default function Home() {
           initial={{ opacity: 0, y: -24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={SNAP}
-          className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-zinc-300 backdrop-blur-md"
+          className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-zinc-300 md:backdrop-blur-md"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_2px_rgba(52,211,153,0.7)]" />
           Active recall, disguised as doomscrolling
@@ -323,7 +323,7 @@ export default function Home() {
           {/* Secondary CTA - minimalist glassmorphic outline. */}
           <Link
             href="/pricing"
-            className="w-full rounded-full border border-white/10 bg-transparent px-6 py-3.5 text-center text-base font-medium text-zinc-300 backdrop-blur-md transition-all duration-200 hover:scale-[1.03] hover:bg-white/5 active:scale-[0.97] sm:w-auto sm:py-3 sm:text-sm"
+            className="w-full rounded-full border border-white/10 bg-transparent px-6 py-3.5 text-center text-base font-medium text-zinc-300 md:backdrop-blur-md transition-all duration-200 hover:scale-[1.03] hover:bg-white/5 active:scale-[0.97] sm:w-auto sm:py-3 sm:text-sm"
           >
             View Pro Plans
           </Link>
@@ -354,7 +354,7 @@ export default function Home() {
                 return (
                   <div
                     key={deck.id}
-                    className="group relative flex flex-col rounded-2xl border border-white/10 bg-white/[0.02] p-5 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-xl transition-transform hover:-translate-y-0.5"
+                    className="group relative flex flex-col rounded-2xl border border-white/10 bg-white/[0.02] p-5 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] md:backdrop-blur-xl transition-transform hover:-translate-y-0.5"
                   >
                     <button
                       type="button"
