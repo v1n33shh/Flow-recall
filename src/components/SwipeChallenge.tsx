@@ -124,7 +124,7 @@ export default function SwipeChallenge({ concept, onAnswered, ref }: SwipeChalle
             }`}
           >
             {/* Front face: the claim to judge. */}
-            <div className="absolute inset-0 flex items-center justify-center rounded-3xl border border-white/10 bg-graphite p-8 text-center [backface-visibility:hidden]">
+            <div className="absolute inset-0 flex items-center justify-center rounded-3xl border border-white/10 bg-surface p-8 text-center [backface-visibility:hidden]">
               <p className="text-xl font-medium text-zinc-300">{claim}</p>
             </div>
 
@@ -132,7 +132,7 @@ export default function SwipeChallenge({ concept, onAnswered, ref }: SwipeChalle
                 upright once the card has flipped. */}
             <div className="absolute inset-0 flex flex-col rounded-3xl border border-white/10 bg-gradient-to-br from-zinc-900 to-[#0A0A0A] p-6 text-center [transform:rotateY(180deg)] [backface-visibility:hidden] overflow-y-auto no-scrollbar">
               <div className="flex flex-col items-center justify-center shrink-0 mb-3">
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-gold">
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-zinc-400">
                   Answer
                 </p>
                 <p className="text-xl font-medium text-zinc-100 mt-1">{concept.answer}</p>
@@ -141,13 +141,13 @@ export default function SwipeChallenge({ concept, onAnswered, ref }: SwipeChalle
                 <button
                   type="button"
                   onClick={() => setShowExplanation(true)}
-                  className="mt-4 text-xs font-medium text-gold hover:underline"
+                  className="mt-4 text-xs font-medium text-accent hover:underline"
                 >
                   Read Deep Dive ↓
                 </button>
               )}
               {concept.explanation && showExplanation && (
-                <div className="mt-2 rounded-r-xl border-l-4 border-l-gold bg-white/5 p-4 text-sm text-left leading-relaxed text-zinc-300 shrink-0">
+                <div className="mt-2 rounded-r-xl border-l-4 border-l-accent bg-white/5 p-4 text-sm text-left leading-relaxed text-zinc-300 shrink-0">
                   {concept.explanation}
                 </div>
               )}
@@ -178,7 +178,7 @@ export default function SwipeChallenge({ concept, onAnswered, ref }: SwipeChalle
         <motion.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-6 rounded-2xl border border-white/10 bg-graphite px-4 py-4 text-center"
+          className="mt-6 rounded-2xl border border-white/10 bg-surface px-4 py-4 text-center"
         >
           <p className="text-xs font-medium uppercase tracking-widest text-zinc-500">
             How did you do?
@@ -195,9 +195,9 @@ export default function SwipeChallenge({ concept, onAnswered, ref }: SwipeChalle
             <button
               type="button"
               onClick={() => grade(true)}
-              className="flex items-center gap-2 rounded-full bg-gold px-4 py-2 text-sm font-medium text-matte transition-transform hover:scale-105 active:scale-95"
+              className="flex items-center gap-2 rounded-full bg-gradient-to-b from-blue-500 to-blue-600 ring-1 ring-inset ring-blue-400/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_8px_24px_-6px_rgba(37,99,235,0.55)] px-4 py-2 text-sm font-medium text-white transition-transform hover:scale-105 active:scale-95"
             >
-              <kbd className="rounded bg-matte/20 px-1.5 py-0.5 text-xs text-matte">2</kbd>
+              <kbd className="rounded bg-background/20 px-1.5 py-0.5 text-xs text-white">2</kbd>
               Correct
             </button>
           </div>

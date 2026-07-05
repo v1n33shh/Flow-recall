@@ -26,10 +26,10 @@ export default function Navbar() {
       className="sticky top-4 z-20 flex justify-center px-4 sm:top-6"
       style={{ marginTop: "env(safe-area-inset-top)" }}
     >
-      <nav className="flex w-full max-w-2xl items-center justify-between gap-2 rounded-full border border-white/10 bg-graphite px-3 py-2.5 sm:gap-3 sm:px-5">
+      <nav className="flex w-full max-w-2xl items-center justify-between gap-2 rounded-full border border-white/10 bg-surface px-3 py-2.5 sm:gap-3 sm:px-5">
         <Link
           href="/"
-          className="font-retro shrink-0 text-xl text-gold sm:text-3xl"
+          className="font-retro shrink-0 text-xl text-white sm:text-3xl"
         >
           FlowRecall
         </Link>
@@ -74,7 +74,7 @@ export default function Navbar() {
                   className="rounded-full"
                 />
               ) : (
-                <span className="flex h-[22px] w-[22px] items-center justify-center rounded-full bg-gold text-[10px] font-bold text-matte">
+                <span className="flex h-[22px] w-[22px] items-center justify-center rounded-full bg-accent text-[10px] font-bold text-white">
                   {(session.user?.name ?? session.user?.email ?? "?").charAt(0).toUpperCase()}
                 </span>
               )}
@@ -84,7 +84,7 @@ export default function Navbar() {
             status !== "loading" && (
               <Link
                 href="/login"
-                className="shrink-0 rounded-full bg-gold px-3 py-1.5 text-sm font-medium text-matte transition-colors hover:bg-gold/90 active:scale-[0.97]"
+                className="shrink-0 rounded-full bg-gradient-to-b from-blue-500 to-blue-600 ring-1 ring-inset ring-blue-400/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_8px_24px_-6px_rgba(37,99,235,0.55)] px-3 py-1.5 text-sm font-medium text-white transition-all duration-200 hover:from-blue-400 hover:to-blue-500 active:scale-[0.97]"
               >
                 Sign In
               </Link>

@@ -6,8 +6,8 @@ import { motion } from "motion/react";
 import { useSession } from "next-auth/react";
 import { fireCelebration } from "@/lib/confetti";
 
-// Gold/white tones for the "Black Card" celebration on the matte black feed.
-const BURST_COLORS = ["#D4AF37", "#ffffff", "#E8C766", "#F5E6C8", "#B8860B"];
+// Electric Azure / white tones for the celebration on the matte black feed.
+const BURST_COLORS = ["#3B82F6", "#60A5FA", "#ffffff", "#93C5FD", "#2563EB"];
 
 export default function CompletionSlide({ total }: { total: number }) {
   const { status, update } = useSession();
@@ -76,12 +76,12 @@ export default function CompletionSlide({ total }: { total: number }) {
           initial={{ scale: 0.7, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: "spring", stiffness: 260, damping: 20 }}
-          className="flex h-20 w-20 items-center justify-center rounded-full bg-gold/15 text-4xl"
+          className="flex h-20 w-20 items-center justify-center rounded-full bg-white/10 text-4xl"
         >
           🔥
         </motion.div>
 
-        <h2 className="mt-6 text-3xl font-bold tracking-tight text-gold">
+        <h2 className="mt-6 text-3xl font-bold tracking-tight text-white">
           Deck complete
         </h2>
         <p className="mt-2 text-zinc-400">
@@ -91,7 +91,7 @@ export default function CompletionSlide({ total }: { total: number }) {
         <div className="mt-8 flex gap-3">
           <Link
             href="/ingest"
-            className="rounded-full border border-white/10 bg-gold px-6 py-2.5 text-sm font-medium text-matte transition-colors hover:bg-gold/90"
+            className="rounded-full border border-white/10 bg-gradient-to-b from-blue-500 to-blue-600 ring-1 ring-inset ring-blue-400/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_8px_24px_-6px_rgba(37,99,235,0.55)] px-6 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:from-blue-400 hover:to-blue-500"
           >
             Ingest more notes
           </Link>

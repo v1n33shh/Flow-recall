@@ -27,7 +27,7 @@ export default async function AccountPage() {
         {user.image ? (
           <Image src={user.image} alt="" width={56} height={56} className="rounded-full" />
         ) : (
-          <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xl font-bold text-white">
+          <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-accent text-xl font-bold text-white">
             {(user.name ?? user.email ?? "?").charAt(0).toUpperCase()}
           </span>
         )}

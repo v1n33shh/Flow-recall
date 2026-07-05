@@ -81,7 +81,7 @@ export default function ChatChallenge({ concept, onAnswered }: ChatChallengeProp
             className="relative h-80 w-full"
           >
             {/* FRONT: the Feynman prompt - explain it in your own words. */}
-            <div className="absolute inset-0 flex flex-col rounded-3xl border border-white/10 bg-graphite p-5 text-left [backface-visibility:hidden]">
+            <div className="absolute inset-0 flex flex-col rounded-3xl border border-white/10 bg-surface p-5 text-left [backface-visibility:hidden]">
               <p className="mb-4 text-lg font-medium leading-snug text-zinc-200">
                 {concept.question}
               </p>
@@ -91,13 +91,13 @@ export default function ChatChallenge({ concept, onAnswered }: ChatChallengeProp
                 disabled={flipped || loading}
                 placeholder="Explain this concept in full - as if you were teaching it to a friend. Don't just define it; unpack why it works."
                 rows={4}
-                className="min-h-0 w-full flex-1 resize-none rounded-2xl border border-white/10 bg-matte/40 p-3 text-sm leading-relaxed text-zinc-200 placeholder-zinc-600 outline-none focus:border-gold/40 disabled:opacity-60"
+                className="min-h-0 w-full flex-1 resize-none rounded-2xl border border-white/10 bg-background/40 p-3 text-sm leading-relaxed text-zinc-200 placeholder-zinc-600 outline-none focus:border-accent/40 disabled:opacity-60"
               />
               <button
                 type="button"
                 onClick={handleSubmit}
                 disabled={loading || answer.trim().length === 0}
-                className="mt-3 min-h-11 w-full rounded-full border border-white/10 bg-gold px-6 py-2.5 text-sm font-medium text-matte transition-colors hover:bg-gold/90 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40"
+                className="mt-3 min-h-11 w-full rounded-full border border-white/10 bg-gradient-to-b from-blue-500 to-blue-600 ring-1 ring-inset ring-blue-400/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_8px_24px_-6px_rgba(37,99,235,0.55)] px-6 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:from-blue-400 hover:to-blue-500 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40"
               >
                 {loading ? "Grading..." : "Submit Explanation"}
               </button>
@@ -126,12 +126,12 @@ export default function ChatChallenge({ concept, onAnswered }: ChatChallengeProp
               </div>
 
               <div className="mt-4 min-h-0 flex-1 overflow-y-auto no-scrollbar">
-                <p className="text-[10px] font-semibold uppercase tracking-widest text-gold">
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-zinc-400">
                   Master Explanation
                 </p>
                 {/* Deep-dive paragraph, falling back to the short answer for
                     decks generated before `explanation` existed. */}
-                <div className="mt-1.5 rounded-r-xl border-l-4 border-l-gold bg-white/5 p-4 text-sm leading-relaxed text-zinc-300">
+                <div className="mt-1.5 rounded-r-xl border-l-4 border-l-accent bg-white/5 p-4 text-sm leading-relaxed text-zinc-300">
                   {concept.explanation || concept.answer}
                 </div>
               </div>

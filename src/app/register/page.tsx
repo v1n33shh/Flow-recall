@@ -72,8 +72,8 @@ export default function RegisterPage() {
 
       {/* Ambient glow orbs — desktop only (blur-3xl janks Android scroll) */}
       <div className="pointer-events-none absolute inset-0 -z-10 hidden overflow-hidden md:block">
-        <div className="absolute -top-40 left-1/2 h-[38rem] w-[38rem] -translate-x-1/2 rounded-full bg-emerald-500/5 blur-3xl" />
-        <div className="absolute top-1/3 -left-32 h-[30rem] w-[30rem] rounded-full bg-purple-600/5 blur-3xl" />
+        <div className="absolute -top-40 left-1/2 h-[38rem] w-[38rem] -translate-x-1/2 rounded-full bg-white/5 blur-3xl" />
+        <div className="absolute top-1/3 -left-32 h-[30rem] w-[30rem] rounded-full bg-white/[0.03] blur-3xl" />
         <div className="absolute -bottom-24 right-[-8rem] h-[32rem] w-[32rem] rounded-full bg-white/5 blur-3xl" />
       </div>
 
@@ -153,7 +153,7 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={loading}
-              className="mt-2 w-full rounded-full bg-white px-6 py-4 text-sm font-semibold text-black shadow-[0_0_20px_rgba(255,255,255,0.15)] transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
+              className="mt-2 w-full rounded-full bg-gradient-to-b from-blue-500 to-blue-600 px-6 py-4 text-sm font-semibold text-white ring-1 ring-inset ring-blue-400/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_8px_28px_-6px_rgba(37,99,235,0.55)] transition-all duration-200 hover:from-blue-400 hover:to-blue-500 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_12px_40px_-6px_rgba(59,130,246,0.75)] hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:shadow-none"
             >
               {loading ? "Creating account..." : "Create account"}
             </button>

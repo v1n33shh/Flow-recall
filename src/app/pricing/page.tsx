@@ -20,7 +20,7 @@ const PRO_FEATURES = [
 
 function Check() {
   return (
-    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-gold/40 text-[11px] font-semibold text-gold">
+    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-white/15 text-[11px] font-semibold text-zinc-400">
       ✓
     </span>
   );
@@ -95,14 +95,14 @@ export default function PricingPage() {
           </div>
         </div>
 
-        {/* Pro tier - frosted glass with an elegant gold ambient glow */}
-        <div className="relative flex flex-col rounded-2xl border border-gold/30 bg-white/[0.02] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_0_40px_rgba(212,175,55,0.15)] backdrop-blur-xl">
-          <span className="absolute -top-3 right-6 rounded-full bg-gradient-to-r from-amber-200 to-amber-500 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-black shadow-lg">
+        {/* Pro tier - frosted glass with an elegant Electric Azure ambient glow */}
+        <div className="relative flex flex-col rounded-2xl border border-accent/30 bg-white/[0.02] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_0_40px_rgba(59,130,246,0.15)] backdrop-blur-xl">
+          <span className="absolute -top-3 right-6 rounded-full bg-gradient-to-b from-blue-400 to-blue-600 px-3 py-1 text-[11px] font-bold uppercase tracking-wide text-white shadow-lg shadow-blue-500/30">
             Most popular
           </span>
-          <h2 className="text-xs font-semibold uppercase tracking-widest text-gold">Pro</h2>
+          <h2 className="text-xs font-semibold uppercase tracking-widest text-accent">Pro</h2>
           <div className="mt-3 flex items-baseline gap-1">
-            <span className="bg-gradient-to-br from-amber-100 via-gold to-amber-500 bg-clip-text text-4xl font-semibold text-transparent">
+            <span className="bg-gradient-to-b from-white to-zinc-400 bg-clip-text text-4xl font-semibold text-transparent">
               $10
             </span>
             <span className="text-sm font-medium text-zinc-400">/mo</span>
@@ -128,7 +128,7 @@ export default function PricingPage() {
             type="button"
             onClick={handleUpgrade}
             disabled={loading || isPro}
-            className="mt-6 rounded-full bg-zinc-100 px-6 py-3.5 text-base font-semibold text-black shadow-[0_0_20px_rgba(255,255,255,0.15)] transition-all duration-200 hover:scale-[1.02] hover:bg-white active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100"
+            className="mt-6 rounded-full bg-gradient-to-b from-blue-500 to-blue-600 px-6 py-3.5 text-base font-semibold text-white ring-1 ring-inset ring-blue-400/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_8px_28px_-6px_rgba(37,99,235,0.55)] transition-all duration-200 hover:from-blue-400 hover:to-blue-500 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_12px_40px_-6px_rgba(59,130,246,0.75)] hover:scale-[1.02] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:scale-100 disabled:hover:shadow-none"
           >
             {isPro ? "You're on Pro 🎉" : loading ? "Starting checkout..." : "Upgrade Now"}
           </button>

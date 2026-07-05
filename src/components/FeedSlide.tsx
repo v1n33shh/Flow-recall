@@ -46,10 +46,10 @@ export default function FeedSlide({
     >
       <div className="w-full max-w-md">
         <div className="mb-6 flex flex-wrap items-center justify-between gap-2 text-xs font-medium text-zinc-400">
-          <span className="flex items-center gap-2 uppercase tracking-widest text-gold">
+          <span className="flex items-center gap-2 uppercase tracking-widest text-zinc-400">
             {concept.concept}
             {attempt > 1 && (
-              <span className="rounded-full bg-gold/15 px-2 py-0.5 text-[10px] normal-case tracking-normal text-gold">
+              <span className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] normal-case tracking-normal text-zinc-400">
                 Retry
               </span>
             )}

@@ -55,7 +55,7 @@ export default function FillBlankChallenge({ concept, onAnswered }: FillBlankCha
             className="relative h-64 w-full"
           >
             {/* FRONT: the cloze sentence with the fillable blank. */}
-            <div className="absolute inset-0 flex flex-col rounded-3xl border border-white/10 bg-graphite p-6 [backface-visibility:hidden]">
+            <div className="absolute inset-0 flex flex-col rounded-3xl border border-white/10 bg-surface p-6 [backface-visibility:hidden]">
               <div className="flex min-h-0 flex-1 items-center justify-center overflow-y-auto no-scrollbar">
                 <p className="text-center text-lg leading-relaxed text-zinc-300">
                   {before}
@@ -66,7 +66,7 @@ export default function FillBlankChallenge({ concept, onAnswered }: FillBlankCha
                     disabled={submitted}
                     placeholder="..."
                     autoCapitalize="off"
-                    className="mx-1 w-36 border-b-2 border-white/20 bg-transparent px-2 py-1 text-center font-semibold text-zinc-300 outline-none focus:border-gold sm:w-40"
+                    className="mx-1 w-36 border-b-2 border-white/20 bg-transparent px-2 py-1 text-center font-semibold text-zinc-300 outline-none focus:border-accent sm:w-40"
                   />
                   {after}
                 </p>
@@ -75,7 +75,7 @@ export default function FillBlankChallenge({ concept, onAnswered }: FillBlankCha
                 type="button"
                 onClick={handleSubmit}
                 disabled={value.trim().length === 0}
-                className="mx-auto mt-4 min-h-11 w-full max-w-xs rounded-full border border-white/10 bg-gold px-6 py-2.5 text-sm font-medium text-matte transition-colors hover:bg-gold/90 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40"
+                className="mx-auto mt-4 min-h-11 w-full max-w-xs rounded-full border border-white/10 bg-gradient-to-b from-blue-500 to-blue-600 ring-1 ring-inset ring-blue-400/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_8px_24px_-6px_rgba(37,99,235,0.55)] px-6 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:from-blue-400 hover:to-blue-500 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-40"
               >
                 Check
               </button>
@@ -96,20 +96,20 @@ export default function FillBlankChallenge({ concept, onAnswered }: FillBlankCha
               <div className="mt-4 flex min-h-0 flex-1 flex-col overflow-y-auto no-scrollbar">
                 <p className="text-base leading-relaxed text-zinc-200 shrink-0 mb-4 text-center">
                   {before}
-                  <span className="font-semibold text-gold">{concept.answer}</span>
+                  <span className="font-semibold text-white">{concept.answer}</span>
                   {after}
                 </p>
                 {concept.explanation && !showExplanation && (
                   <button
                     type="button"
                     onClick={() => setShowExplanation(true)}
-                    className="mt-4 text-xs font-medium text-gold hover:underline"
+                    className="mt-4 text-xs font-medium text-accent hover:underline"
                   >
                     Read Deep Dive ↓
                   </button>
                 )}
                 {concept.explanation && showExplanation && (
-                  <div className="mt-1 rounded-r-xl border-l-4 border-l-gold bg-white/5 p-4 text-sm text-left leading-relaxed text-zinc-300 shrink-0">
+                  <div className="mt-1 rounded-r-xl border-l-4 border-l-accent bg-white/5 p-4 text-sm text-left leading-relaxed text-zinc-300 shrink-0">
                     {concept.explanation}
                   </div>
                 )}

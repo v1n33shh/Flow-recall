@@ -200,7 +200,7 @@ export default function IngestPage() {
       </p>
 
       {status === "unauthenticated" && (
-        <div className="mt-6 rounded-xl border border-white/10 bg-graphite px-4 py-3 text-sm text-zinc-300">
+        <div className="mt-6 rounded-xl border border-white/10 bg-surface px-4 py-3 text-sm text-zinc-300">
           You need to be signed in to generate concepts.{" "}
           <Link href="/login" className="font-medium underline">
             Sign in
@@ -223,7 +223,7 @@ export default function IngestPage() {
         onChange={(e) => setText(e.target.value)}
         placeholder="Paste your notes here..."
         rows={10}
-        className="mt-4 w-full resize-y rounded-2xl border border-white/10 bg-graphite p-4 text-base text-zinc-300 placeholder-zinc-600 outline-none focus:"
+        className="mt-4 w-full resize-y rounded-2xl border border-white/10 bg-surface p-4 text-base text-zinc-300 placeholder-zinc-600 outline-none focus:"
       />
 
       <label className="mt-4 block text-xs font-medium uppercase tracking-wide text-zinc-400">
@@ -234,7 +234,7 @@ export default function IngestPage() {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         placeholder="Untitled Notes"
-        className="mt-1.5 w-full rounded-xl border border-white/10 bg-graphite px-4 py-3 text-base text-zinc-300 placeholder-zinc-600 outline-none focus:"
+        className="mt-1.5 w-full rounded-xl border border-white/10 bg-surface px-4 py-3 text-base text-zinc-300 placeholder-zinc-600 outline-none focus:"
       />
 
       <label
@@ -248,10 +248,10 @@ export default function IngestPage() {
           id="model-select"
           value={selectedModel}
           onChange={(e) => setSelectedModel(e.target.value)}
-          className="w-full cursor-pointer appearance-none rounded-lg border border-white/10 bg-graphite px-4 py-3 pr-11 text-base font-bold text-zinc-300 outline-none transition-all focus:-translate-x-0.5 focus:-translate-y-0.5 focus:"
+          className="w-full cursor-pointer appearance-none rounded-lg border border-white/10 bg-surface px-4 py-3 pr-11 text-base font-bold text-zinc-300 outline-none transition-all focus:-translate-x-0.5 focus:-translate-y-0.5 focus:"
         >
           {MODEL_OPTIONS.map((m) => (
-            <option key={m.id} value={m.id} className="bg-graphite font-medium text-zinc-300">
+            <option key={m.id} value={m.id} className="bg-surface font-medium text-zinc-300">
               {m.label}
             </option>
           ))}
@@ -262,7 +262,7 @@ export default function IngestPage() {
       </div>
 
       {proModelLocked && (
-        <div className="mt-3 rounded-lg border border-white/10 bg-graphite px-4 py-3 text-sm font-bold text-zinc-300">
+        <div className="mt-3 rounded-lg border border-white/10 bg-surface px-4 py-3 text-sm font-bold text-zinc-300">
           You need a Pro subscription to use this model.
         </div>
       )}
@@ -271,15 +271,15 @@ export default function IngestPage() {
         type="button"
         onClick={() => handleGenerate()}
         disabled={loading || text.trim().length === 0 || !isAuthenticated || proModelLocked}
-        className="mt-4 self-stretch rounded-full bg-gold px-6 py-3.5 text-base font-medium text-matte transition-colors hover:bg-gold/90 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 sm:self-start sm:py-2.5 sm:text-sm"
+        className="mt-4 self-stretch rounded-full bg-gradient-to-b from-blue-500 to-blue-600 ring-1 ring-inset ring-blue-400/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_8px_24px_-6px_rgba(37,99,235,0.55)] px-6 py-3.5 text-base font-medium text-white transition-all duration-200 hover:from-blue-400 hover:to-blue-500 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 sm:self-start sm:py-2.5 sm:text-sm"
       >
         {loading ? `Generating part ${currentChunk} of ${totalChunks}...` : "Generate micro-concepts"}
       </button>
 
       {showPaywall && (
-        <div className="mt-4 overflow-hidden rounded-2xl border border-gold/30 bg-gradient-to-br from-gold/10 via-graphite to-graphite p-6 shadow-lg shadow-gold/5">
+        <div className="mt-4 overflow-hidden rounded-2xl border border-accent/30 bg-gradient-to-br from-accent/10 via-surface to-surface p-6 shadow-lg shadow-blue-500/5">
           <div className="flex items-center gap-2">
-            <span className="text-xs font-bold uppercase tracking-widest text-gold">
+            <span className="text-xs font-bold uppercase tracking-widest text-accent">
               ✦ Flowrecall Pro
             </span>
           </div>
@@ -291,7 +291,7 @@ export default function IngestPage() {
           </p>
           <Link
             href="/pricing"
-            className="mt-5 inline-flex items-center justify-center rounded-full bg-gold px-6 py-3 text-sm font-semibold text-matte shadow-md shadow-gold/20 transition-all hover:bg-gold/90 hover:shadow-gold/30 active:scale-[0.98]"
+            className="mt-5 inline-flex items-center justify-center rounded-full bg-gradient-to-b from-blue-500 to-blue-600 px-6 py-3 text-sm font-semibold text-white ring-1 ring-inset ring-blue-400/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_8px_28px_-6px_rgba(37,99,235,0.55)] transition-all duration-200 hover:from-blue-400 hover:to-blue-500 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_12px_40px_-6px_rgba(59,130,246,0.75)] active:scale-[0.98]"
           >
             Upgrade to Pro &rarr;
           </Link>
@@ -301,21 +301,21 @@ export default function IngestPage() {
       {loading && totalChunks > 1 && (
         <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
           <div
-            className="h-full bg-gold transition-all"
+            className="h-full bg-accent transition-all"
             style={{ width: `${(currentChunk / totalChunks) * 100}%` }}
           />
         </div>
       )}
 
       {truncated && (
-        <div className="mt-4 rounded-xl border border-white/10 bg-graphite px-4 py-3 text-sm font-medium text-zinc-300">
+        <div className="mt-4 rounded-xl border border-white/10 bg-surface px-4 py-3 text-sm font-medium text-zinc-300">
           To keep generation blazing fast, we processed the first section. You
           can generate the rest anytime from your Library!
         </div>
       )}
 
       {error && !proModelLocked && (
-        <div className="mt-6 rounded-xl border border-white/10 bg-graphite px-4 py-3 text-sm text-zinc-300">
+        <div className="mt-6 rounded-xl border border-white/10 bg-surface px-4 py-3 text-sm text-zinc-300">
           {error}
         </div>
       )}
@@ -329,7 +329,7 @@ export default function IngestPage() {
             <button
               type="button"
               onClick={handleStartStudying}
-              className="rounded-full bg-gold px-5 py-2.5 text-sm font-medium text-matte transition-colors hover:bg-gold/90 active:scale-95"
+              className="rounded-full bg-gradient-to-b from-blue-500 to-blue-600 ring-1 ring-inset ring-blue-400/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_8px_24px_-6px_rgba(37,99,235,0.55)] px-5 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:from-blue-400 hover:to-blue-500 active:scale-95"
             >
               Start studying &rarr;
             </button>
@@ -337,9 +337,9 @@ export default function IngestPage() {
           {concepts.map((c) => (
             <div
               key={c.id}
-              className="rounded-xl border border-white/10 bg-graphite p-4"
+              className="rounded-xl border border-white/10 bg-surface p-4"
             >
-              <p className="text-xs font-medium uppercase tracking-wide text-gold/70">
+              <p className="text-xs font-medium uppercase tracking-wide text-zinc-400/70">
                 {c.concept}
               </p>
               <p className="mt-2 text-sm text-zinc-300">{c.question}</p>

@@ -38,7 +38,7 @@ const MARQUEE_ROWS = [
     rotate: -8,
     duration: 42,
     reverse: false,
-    className: "text-gold/10",
+    className: "text-zinc-400/10",
   },
   {
     text: "GROQ POWERED • ZERO FRICTION • STUDY HARDER • ",
@@ -46,7 +46,7 @@ const MARQUEE_ROWS = [
     rotate: 7,
     duration: 55,
     reverse: true,
-    className: "text-gold/[0.07]",
+    className: "text-zinc-400/[0.07]",
   },
   {
     text: "NO CREDIT CARD • BLAZING FAST • FLOWRECALL • ",
@@ -54,7 +54,7 @@ const MARQUEE_ROWS = [
     rotate: -5,
     duration: 65,
     reverse: false,
-    className: "text-gold/10",
+    className: "text-zinc-400/10",
   },
 ];
 
@@ -74,7 +74,7 @@ const MOCK_CARDS: MockCard[] = [
     depth: 1,
     delay: 0,
     label: "MITOCHONDRIA",
-    labelColor: "text-gold/70",
+    labelColor: "text-zinc-400/70",
     body: "What is the powerhouse of the cell?",
     footer: "✕  ✓  Swipe",
   },
@@ -83,7 +83,7 @@ const MOCK_CARDS: MockCard[] = [
     depth: 1.6,
     delay: 0.1,
     label: "PHOTOSYNTHESIS",
-    labelColor: "text-gold/70",
+    labelColor: "text-zinc-400/70",
     body: "Plants use ▢▢▢▢▢ to absorb light.",
     footer: "Nailed it.",
   },
@@ -92,7 +92,7 @@ const MOCK_CARDS: MockCard[] = [
     depth: 1.2,
     delay: 0.2,
     label: "STREAK",
-    labelColor: "text-gold/70",
+    labelColor: "text-zinc-400/70",
     body: "🔥  7",
     footer: "You're on fire",
   },
@@ -146,7 +146,7 @@ function ParallaxCard({ card, mouseX, mouseY }: ParallaxCardProps) {
       initial={{ opacity: 0, scale: 0.5, rotate: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ ...SNAP, delay: card.delay }}
-      className={`absolute w-44 rounded-2xl border border-white/10 bg-graphite p-3 text-left ${card.className}`}
+      className={`absolute w-44 rounded-2xl border border-white/10 bg-surface p-3 text-left ${card.className}`}
     >
       <p className={`text-[10px] font-semibold uppercase tracking-wide ${card.labelColor}`}>
         {card.label}
@@ -268,9 +268,9 @@ export default function Home() {
           behind the hero to give the dark page depth. pointer-events-none and
           -z-10 keep them clear of the marquee, cards, and interactive content. */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden hidden md:block">
-        <div className="absolute -top-40 left-1/2 h-[38rem] w-[38rem] -translate-x-1/2 rounded-full bg-emerald-500/5 blur-3xl" />
-        <div className="absolute top-1/3 -left-32 h-[30rem] w-[30rem] rounded-full bg-purple-600/5 blur-3xl" />
-        <div className="absolute -bottom-24 right-[-8rem] h-[32rem] w-[32rem] rounded-full bg-gold/5 blur-3xl" />
+        <div className="absolute -top-40 left-1/2 h-[38rem] w-[38rem] -translate-x-1/2 rounded-full bg-white/5 blur-3xl" />
+        <div className="absolute top-1/3 -left-32 h-[30rem] w-[30rem] rounded-full bg-white/[0.03] blur-3xl" />
+        <div className="absolute -bottom-24 right-[-8rem] h-[32rem] w-[32rem] rounded-full bg-white/5 blur-3xl" />
       </div>
 
       {/* Cinematic film grain - a fixed, whisper-faint noise texture over the
@@ -292,14 +292,14 @@ export default function Home() {
           transition={SNAP}
           className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-zinc-300 md:backdrop-blur-md"
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_2px_rgba(52,211,153,0.7)]" />
+          <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_8px_2px_rgba(59,130,246,0.7)]" />
           Active recall, disguised as doomscrolling
         </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 32 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...SNAP, delay: 0.05 }}
-          className="font-retro max-w-2xl bg-gradient-to-br from-amber-100 via-gold to-amber-500 bg-clip-text pb-4 text-4xl leading-tight text-transparent [text-wrap:balance] sm:text-6xl"
+          className="font-retro max-w-2xl bg-gradient-to-b from-white to-zinc-500 bg-clip-text pb-4 text-4xl leading-tight text-transparent [text-wrap:balance] sm:text-6xl"
         >
           Drop your notes in. Scroll your way to remembering everything.
         </motion.h1>
@@ -327,11 +327,12 @@ export default function Home() {
           >
             View Pro Plans
           </Link>
-          {/* Primary CTA - monochrome luxury: stark near-white fill, restrained
-              soft white glow that lifts to full white on hover. */}
+          {/* Primary CTA - Electric Azure: the single accent, a vertical blue
+              gradient with an inset top highlight and an ambient glow that
+              intensifies on hover so it reads as raised and unmistakably clickable. */}
           <Link
             href="/ingest"
-            className="w-full rounded-full bg-zinc-100 px-6 py-3.5 text-center text-base font-semibold text-black shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all duration-200 hover:scale-[1.03] hover:bg-white active:scale-[0.97] sm:w-auto sm:py-3 sm:text-sm"
+            className="w-full rounded-full bg-gradient-to-b from-blue-500 to-blue-600 px-6 py-3.5 text-center text-base font-semibold text-white ring-1 ring-inset ring-blue-400/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_8px_28px_-6px_rgba(37,99,235,0.55)] transition-all duration-200 hover:from-blue-400 hover:to-blue-500 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.22),0_12px_40px_-6px_rgba(59,130,246,0.75)] hover:scale-[1.03] active:scale-[0.97] sm:w-auto sm:py-3 sm:text-sm"
           >
             Start ingesting notes
           </Link>
@@ -378,7 +379,7 @@ export default function Home() {
                       <div className="mt-3">
                         <div className="h-1.5 w-full overflow-hidden rounded-full bg-white/10">
                           <div
-                            className="h-full bg-gold transition-all"
+                            className="h-full bg-accent transition-all"
                             style={{ width: `${pct * 100}%` }}
                           />
                         </div>
@@ -391,7 +392,7 @@ export default function Home() {
                     <button
                       type="button"
                       onClick={() => handleStudyNow(deck, isFullyMastered)}
-                      className="mt-4 rounded-full bg-gold px-4 py-2.5 text-sm font-medium text-matte transition-colors hover:bg-gold/90 active:scale-[0.98]"
+                      className="mt-4 rounded-full bg-gradient-to-b from-blue-500 to-blue-600 ring-1 ring-inset ring-blue-400/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_8px_24px_-6px_rgba(37,99,235,0.55)] px-4 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:from-blue-400 hover:to-blue-500 active:scale-[0.98]"
                     >
                       {buttonLabel}
                     </button>
@@ -402,7 +403,7 @@ export default function Home() {
                           type="button"
                           onClick={() => handleGenerateNextSection(deck)}
                           disabled={generatingDeckIds.has(deck.id)}
-                          className="mt-2 rounded-full border border-white/10 bg-transparent px-4 py-2.5 text-sm font-medium text-zinc-300 transition-all duration-200 hover:bg-gold hover:text-matte active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50"
+                          className="mt-2 rounded-full border border-white/10 bg-transparent px-4 py-2.5 text-sm font-medium text-zinc-300 transition-all duration-200 hover:bg-white/10 hover:text-white active:scale-[0.97] disabled:cursor-not-allowed disabled:opacity-50"
                         >
                           {generatingDeckIds.has(deck.id)
                             ? "Generating..."

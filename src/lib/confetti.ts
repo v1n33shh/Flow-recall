@@ -1,5 +1,5 @@
-// Gold/white tones for the "Black Card" celebration on the matte black bg.
-const CELEBRATION_COLORS = ["#D4AF37", "#ffffff", "#E8C766", "#F5E6C8", "#B8860B"];
+// Electric Azure / white tones for the celebration on the matte black bg.
+const CELEBRATION_COLORS = ["#3B82F6", "#60A5FA", "#ffffff", "#93C5FD", "#2563EB"];
 
 /** Small burst from the bottom of the screen - for a single Level 3 correct answer. */
 export async function fireSmallBurst() {

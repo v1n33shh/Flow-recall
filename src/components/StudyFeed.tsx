@@ -199,13 +199,13 @@ export default function StudyFeed({ deckId, concepts }: { deckId: string; concep
   }, []);
 
   return (
-    <div className="fixed inset-0 z-0 bg-matte">
+    <div className="fixed inset-0 z-0 bg-background">
       <div
         className="pointer-events-none absolute inset-x-0 top-0 z-10 h-1 bg-white/10"
         style={{ marginTop: "env(safe-area-inset-top)" }}
       >
         <motion.div
-          className="h-full bg-gold"
+          className="h-full bg-accent"
           animate={{ width: `${progress * 100}%` }}
           transition={{ type: "spring", stiffness: 200, damping: 30 }}
         />

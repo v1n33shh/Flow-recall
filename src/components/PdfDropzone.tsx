@@ -80,8 +80,8 @@ export default function PdfDropzone({ onExtracted }: PdfDropzoneProps) {
 
         <motion.div
           animate={{
-            borderColor: isDragActive ? "rgba(212,175,55,0.9)" : "rgba(212,175,55,0.4)",
-            backgroundColor: isDragActive ? "rgba(212,175,55,0.08)" : "rgba(212,175,55,0)",
+            borderColor: isDragActive ? "rgba(59,130,246,0.9)" : "rgba(59,130,246,0.4)",
+            backgroundColor: isDragActive ? "rgba(59,130,246,0.08)" : "rgba(59,130,246,0)",
             scale: isDragActive ? 1.01 : 1,
           }}
           transition={{ type: "spring", stiffness: 300, damping: 25 }}
@@ -99,7 +99,7 @@ export default function PdfDropzone({ onExtracted }: PdfDropzoneProps) {
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                  className="h-6 w-6 rounded-full border border-white/15 border-t-gold"
+                  className="h-6 w-6 rounded-full border border-white/15 border-t-accent"
                 />
                 <p className="text-base text-zinc-400">Extracting text from {status.fileName}...</p>
               </motion.div>

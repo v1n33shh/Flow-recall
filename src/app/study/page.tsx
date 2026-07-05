@@ -16,7 +16,7 @@ export default function StudyPage() {
         </p>
         <Link
           href="/ingest"
-          className="mt-6 rounded-full bg-emerald-500 px-6 py-2.5 text-sm font-medium text-white transition-colors hover:bg-emerald-400"
+          className="mt-6 rounded-full bg-gradient-to-b from-blue-500 to-blue-600 px-6 py-2.5 text-sm font-medium text-white ring-1 ring-inset ring-blue-400/40 shadow-[inset_0_1px_0_rgba(255,255,255,0.15),0_8px_24px_-6px_rgba(37,99,235,0.55)] transition-all duration-200 hover:from-blue-400 hover:to-blue-500 active:scale-[0.98]"
         >
           Go to Auto-Ingest
         </Link>

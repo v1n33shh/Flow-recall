@@ -112,7 +112,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${pacifico.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-matte text-zinc-300 font-sans">
+      <body className="min-h-full flex flex-col bg-background text-zinc-300 font-sans">
         <SessionProvider>
           <Navbar />
           <div className="flex flex-1 flex-col">{children}</div>
