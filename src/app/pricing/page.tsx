@@ -219,6 +219,13 @@ export default function PricingPage() {
           </p>
         </div>
       </div>
+
+      <div className="mt-16 text-center text-sm text-zinc-400">
+        Questions? Need support?{" "}
+        <a href="mailto:founder@flowrecall.app" className="text-accent transition-colors hover:text-blue-400 hover:underline">
+          Email us
+        </a>
+      </div>
     </main>
   );
 }
