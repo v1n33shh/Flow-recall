@@ -14,7 +14,6 @@ const FREE_FEATURES = [
 
 const PRO_FEATURES = [
   "Everything in Free",
-  "GPT-4o for richer concepts",
   "Claude 3.5 Sonnet for deep material",
   "Priority generation speed",
 ];
