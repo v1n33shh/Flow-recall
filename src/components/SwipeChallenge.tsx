@@ -135,7 +135,7 @@ export default function SwipeChallenge({ concept, onAnswered, ref }: SwipeChalle
                 <p className="text-[10px] font-semibold uppercase tracking-widest text-zinc-400">
                   Answer
                 </p>
-                <p className="text-xl font-medium text-zinc-100 mt-1">{concept.answer}</p>
+                <p className="text-lg font-medium text-zinc-100 mt-1 line-clamp-3">{concept.answer}</p>
               </div>
               {concept.explanation && !showExplanation && (
                 <button

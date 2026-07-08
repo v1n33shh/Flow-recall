@@ -35,13 +35,17 @@ function buildConceptsPrompt(text: string): string {
     "Do NOT generate more than 3. Quality over quantity.",
     "",
     "Each flashcard must be genuinely hard - test deep understanding not surface recall.",
-    "Distractors must be dangerously plausible, not obviously wrong.",
-    "'explanation' must be ONE concise sentence (max 20 words) explaining the concept.",
+    "Distractors must be dangerously plausible — a subtle near-miss that targets a real misconception.",
     "'answer' must be a concise phrase under 6 words.",
     "'cloze' must contain exactly '_____' where the answer goes.",
     "",
+    "DEEP-DIVE EXPLANATION - this is the most important field:",
+    "- 'explanation' must be a rich 3-4 sentence paragraph that deeply explains the concept,",
+    "  its mechanisms, and why it matters. This is what the student reads after answering.",
+    "- Never write a short phrase for explanation. Always write a full paragraph.",
+    "",
     "Respond with ONLY raw JSON - no markdown, no code blocks:",
-    '{"concepts":[{"concept":"short label","question":"hard recall question","answer":"concise answer","distractor":"plausible wrong answer","cloze":"sentence with _____ blank","explanation":"one sentence explanation"}]}',
+    '{"concepts":[{"concept":"short label","question":"hard recall question","answer":"concise answer under 6 words","distractor":"plausible wrong answer","cloze":"sentence with _____ blank","explanation":"a rich 3-4 sentence paragraph explaining the concept deeply"}]}',
     "",
     "Source material:",
     text,
@@ -108,12 +112,12 @@ export async function POST(request: Request) {
 
   try {
     const model = getProviderModel(plan, requestedModel);
-    // maxOutputTokens capped at 700 so Claude stays well within Vercel's
-    // 60-second limit. The prompt already caps at 3 concepts per chunk.
+    // maxOutputTokens at 1500 — enough for 3 concepts with full rich
+    // 3-4 sentence explanations while staying well under Vercel's 60s limit.
     const { text: rawText } = await generateText({
       model,
       prompt: buildConceptsPrompt(text),
-      maxOutputTokens: 700,
+      maxOutputTokens: 1500,
     });
 
     let rawJson: unknown;
