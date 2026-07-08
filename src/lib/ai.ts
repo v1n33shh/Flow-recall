@@ -45,9 +45,12 @@ export function getProviderModel(plan: string, requestedModel: string): Language
     case "gpt-4o":
       return createOpenAI({ apiKey: process.env.OPENAI_API_KEY })("gpt-4o");
     case "claude-3-5-sonnet-20240620":
-      return createAnthropic({ apiKey: process.env.ANTHROPIC_API_KEY })(
-        "claude-3-5-sonnet-20240620",
-      );
+      // Routed through AICredits API Gateway (OpenAI-compatible) because Anthropic
+      // strictly blocks Indian Debit Cards. We use the OpenAI SDK with their custom URL!
+      return createOpenAI({ 
+        baseURL: "https://api.aicredits.in/v1",
+        apiKey: process.env.ANTHROPIC_API_KEY 
+      })("anthropic/claude-3-5-sonnet-20240620");
     default:
       // A PRO user who left the free model selected (or sent an unknown id)
       // still gets a working model rather than a hard error.
