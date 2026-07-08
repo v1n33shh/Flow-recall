@@ -19,7 +19,7 @@ const requestSchema = z.object({
   // The model the client requested. FREE plans are pinned to Groq regardless,
   // so this only matters on a PRO plan. Defaults to the free model.
   model: z
-    .enum([FREE_MODEL, "gpt-4o", "claude-3-5-sonnet-20240620"])
+    .enum([FREE_MODEL, "gpt-4o", "claude-sonnet-latest"])
     .default(FREE_MODEL),
   // A single deck generation is sent as up to MAX_CHUNKS sequential requests.
   // The daily FREE quota is per *deck*, so only the first chunk of a deck
