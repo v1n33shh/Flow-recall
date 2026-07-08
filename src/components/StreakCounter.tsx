@@ -1,76 +1,102 @@
 "use client";
 
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 
-const FIRE_THRESHOLD = 3;
+// PERFORMANCE CONTRACT (low-end Android, 60fps):
+// All animations touch ONLY `transform` (scale) and `opacity`.
+// We never animate filter/box-shadow — those force a repaint every frame
+// and destroy performance on cheap Android phones.
+
+// Tier thresholds — same scale as StreakModal so the two components stay in sync.
+type FlameTier = { from: string; via: string; to: string; core: string };
+
+function getFlameTier(streak: number): FlameTier {
+  if (streak >= 14)
+    return { from: "#FFFFFF", via: "#E2E8F0", to: "#94A3B8", core: "#FFFFFF" }; // God Tier — silver/white
+  if (streak >= 7)
+    return { from: "#FBBF24", via: "#F59E0B", to: "#EA580C", core: "#FEF3C7" }; // Inferno — amber/orange
+  if (streak >= 3)
+    return { from: "#C084FC", via: "#9333EA", to: "#7E22CE", core: "#F3E8FF" }; // Heating Up — amethyst
+  return { from: "#93C5FD", via: "#3B82F6", to: "#2563EB", core: "#DBEAFE" };   // The Spark — electric azure
+}
+
+/** A tiny SVG flame whose gradient evolves with the streak tier.
+ *  Only the static gradient colors change per tier — the breathing loop
+ *  (scale only) is identical across all tiers, so switching tier costs zero frames. */
+function TierFlame({ streak }: { streak: number }) {
+  const tier = getFlameTier(streak);
+  const active = streak >= 3; // pulse starts at tier 2
+
+  return (
+    <motion.svg
+      viewBox="0 0 24 24"
+      className="h-4 w-4 shrink-0"
+      // scale-only pulse: transform is GPU-compositable, no paint triggered.
+      animate={active ? { scale: [1, 1.18, 1] } : { scale: 1 }}
+      transition={
+        active
+          ? { duration: 1.4, repeat: Infinity, ease: "easeInOut" }
+          : { duration: 0.2 }
+      }
+      aria-hidden="true"
+    >
+      <defs>
+        {/* Static gradient — colors swap instantly on tier change, never animate. */}
+        <linearGradient id={`fg-${streak}`} x1="12" y1="2" x2="12" y2="22" gradientUnits="userSpaceOnUse">
+          <stop offset="0"   stopColor={tier.from} />
+          <stop offset="0.5" stopColor={tier.via} />
+          <stop offset="1"   stopColor={tier.to} />
+        </linearGradient>
+      </defs>
+      {/* Outer flame body */}
+      <path
+        d="M12 2c1.8 3.2 5 5.4 5 9.2a5 5 0 0 1-10 0c0-1.7.7-3.1 1.9-4.2-.1 1.4.7 2.4 1.9 2.4-1.3-2.9-.1-5.7 1.2-7.4z"
+        fill={`url(#fg-${streak})`}
+      />
+      {/* Inner core — bright heart of the flame */}
+      <path
+        d="M12 21a2.9 2.9 0 0 0 2.9-2.9c0-1.5-1.1-2.5-1.8-3.6-.8 1.1-1.6 1.7-2.2 2.6-.4.6-.7 1-.7 1.6A2.8 2.8 0 0 0 12 21z"
+        fill={tier.core}
+      />
+    </motion.svg>
+  );
+}
 
 export default function StreakCounter({
   streak,
   onClick,
 }: {
   streak: number;
-  /** When provided, the pill becomes an accessible button (used by the Navbar
-   * to open the Streak details modal). Omitted elsewhere (e.g. the study feed),
-   * where it stays a passive indicator. */
   onClick?: () => void;
 }) {
-  const onFire = streak >= FIRE_THRESHOLD;
+  const onFire = streak >= 3;
 
-  // A forest pill with butter text reads well on both surfaces it appears on:
-  // the butter navbar (forest pops) and the forest study feed (the butter
-  // border/text delineate it against the dark green).
   return (
-    <AnimatePresence>
-      {streak > 0 && (
-        <motion.div
-          key="streak"
-          initial={{ opacity: 0, scale: 0.6, y: -8 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.6 }}
-          transition={{ type: "spring", stiffness: 400, damping: 20 }}
-          onClick={onClick}
-          role={onClick ? "button" : undefined}
-          tabIndex={onClick ? 0 : undefined}
-          aria-label={onClick ? `${streak} day streak. View details.` : undefined}
-          onKeyDown={
-            onClick
-              ? (e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    e.preventDefault();
-                    onClick();
-                  }
-                }
-              : undefined
-          }
-          className={`flex items-center gap-1 rounded-full border bg-surface px-2 sm:px-3 py-1 text-sm font-semibold text-accent outline-none ${
-            onFire ? "border-white/20" : "border-white/10"
-          } ${onClick ? "cursor-pointer select-none transition-transform hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-accent/60" : ""}`}
-        >
-          {/* The infinite pulse lives on its own element, separate from the
-              AnimatePresence-controlled wrapper above - a repeat: Infinity
-              transition on the same element AnimatePresence needs to exit
-              fights the exit animation and the element never cleanly
-              disappears (opacity oscillates forever instead of settling). */}
-          <motion.span
-            animate={
-              onFire
-                ? {
-                    scale: [1, 1.15, 1],
-                    filter: [
-                      "drop-shadow(0 0 2px rgba(59,130,246,0.4))",
-                      "drop-shadow(0 0 10px rgba(59,130,246,0.95))",
-                      "drop-shadow(0 0 2px rgba(59,130,246,0.4))",
-                    ],
-                  }
-                : { scale: 1, filter: "drop-shadow(0 0 0px rgba(59,130,246,0))" }
+    <motion.div
+      key="streak"
+      initial={{ opacity: 0, scale: 0.6, y: -8 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ type: "spring", stiffness: 400, damping: 20 }}
+      onClick={onClick}
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      aria-label={onClick ? `${streak} day streak. View details.` : undefined}
+      onKeyDown={
+        onClick
+          ? (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onClick();
+              }
             }
-            transition={onFire ? { duration: 1.1, repeat: Infinity, ease: "easeInOut" } : { duration: 0.2 }}
-          >
-            🔥
-          </motion.span>
-          <span className="tabular-nums">{streak}</span>
-        </motion.div>
-      )}
-    </AnimatePresence>
+          : undefined
+      }
+      className={`flex items-center gap-1.5 rounded-full border bg-surface px-2 sm:px-3 py-1 text-sm font-semibold outline-none ${
+        onFire ? "border-white/20 text-white" : "border-white/10 text-accent"
+      } ${onClick ? "cursor-pointer select-none transition-transform hover:scale-105 active:scale-95 focus-visible:ring-2 focus-visible:ring-accent/60" : ""}`}
+    >
+      <TierFlame streak={streak} />
+      <span className="tabular-nums">{streak}</span>
+    </motion.div>
   );
 }
