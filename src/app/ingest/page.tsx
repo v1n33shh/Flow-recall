@@ -14,7 +14,7 @@ import PdfDropzone from "@/components/PdfDropzone";
 const DEFAULT_MODEL = "llama-3.3-70b-versatile";
 const MODEL_OPTIONS = [
   { id: "llama-3.3-70b-versatile", label: "Llama 3.3 70B (Free)", pro: false },
-  { id: "claude-sonnet-latest", label: "Claude 3.5 Sonnet (Pro)", pro: true },
+  { id: "claude-haiku-latest", label: "Claude Haiku (Pro)", pro: true },
 ] as const;
 
 // Time to wait between chunk requests - Groq's free tier enforces per-minute

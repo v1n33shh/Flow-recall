@@ -12,7 +12,7 @@ export const FREE_MODEL = "llama-3.3-70b-versatile";
 // in the dropdown. Anything not in here is treated as "not a Pro model".
 export const PRO_MODELS = {
   "gpt-4o": "openai",
-  "claude-sonnet-latest": "anthropic",
+  "claude-haiku-latest": "anthropic",
 } as const;
 
 export type RequestedModel = typeof FREE_MODEL | keyof typeof PRO_MODELS;
@@ -25,7 +25,7 @@ export function isProModel(requestedModel: string): boolean {
 /** Human-readable provider name for a given plan+model, for error messages. */
 export function providerLabel(plan: string, requestedModel: string): string {
   if (plan === "PRO" && requestedModel === "gpt-4o") return "OpenAI";
-  if (plan === "PRO" && requestedModel === "claude-sonnet-latest") return "Anthropic";
+  if (plan === "PRO" && requestedModel === "claude-haiku-latest") return "Anthropic";
   return "Groq";
 }
 
@@ -44,13 +44,13 @@ export function getProviderModel(plan: string, requestedModel: string): Language
   switch (requestedModel) {
     case "gpt-4o":
       return createOpenAI({ apiKey: process.env.OPENAI_API_KEY })("gpt-4o");
-    case "claude-sonnet-latest":
+    case "claude-haiku-latest":
       // Routed through AICredits API Gateway (OpenAI-compatible) because Anthropic
-      // strictly blocks Indian Debit Cards. We use the OpenAI SDK with their custom URL.
+      // strictly blocks Indian Debit Cards. Haiku is 5x faster than Sonnet.
       return createOpenAI({ 
         baseURL: "https://api.aicredits.in/v1",
         apiKey: process.env.ANTHROPIC_API_KEY 
-      })("anthropic/claude-sonnet-latest");
+      })("anthropic/claude-haiku-latest");
     default:
       // A PRO user who left the free model selected (or sent an unknown id)
       // still gets a working model rather than a hard error.
