@@ -44,16 +44,17 @@ export function getProviderModel(plan: string, requestedModel: string): Language
   switch (requestedModel) {
     case "gpt-4o":
       return createOpenAI({ apiKey: process.env.OPENAI_API_KEY })("gpt-4o");
-    case "claude-haiku-latest":
+    case "claude-haiku-latest": {
       // Routed through AICredits API Gateway (OpenAI-compatible) because Anthropic
       // strictly blocks Indian Debit Cards. Haiku is 5x faster than Sonnet.
-      // `compatibility: 'compatible'` forces /v1/chat/completions instead of the
-      // newer /v1/responses endpoint that AICredits does not support.
-      return createOpenAI({ 
+      // .chat() forces /v1/chat/completions instead of the newer /v1/responses
+      // endpoint that AICredits does not support.
+      const aiCredits = createOpenAI({ 
         baseURL: "https://api.aicredits.in/v1",
         apiKey: process.env.ANTHROPIC_API_KEY,
-        compatibility: "compatible",
-      })("anthropic/claude-haiku-latest");
+      });
+      return aiCredits.chat("anthropic/claude-haiku-latest");
+    }
     default:
       // A PRO user who left the free model selected (or sent an unknown id)
       // still gets a working model rather than a hard error.
