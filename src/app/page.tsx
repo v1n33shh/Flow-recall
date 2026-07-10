@@ -565,7 +565,7 @@ export default function Home() {
           initial={{ opacity: 0, y: -24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={SNAP}
-          className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs font-medium uppercase tracking-widest text-zinc-300 md:backdrop-blur-md"
+          className="mb-5 inline-flex items-center gap-1.5 sm:gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 sm:px-4 sm:py-1.5 text-[10px] sm:text-xs font-medium uppercase tracking-widest text-zinc-300 md:backdrop-blur-md"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_8px_2px_rgba(59,130,246,0.7)]" />
           Active recall, disguised as doomscrolling
@@ -575,7 +575,7 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ ...SNAP, delay: 0.05 }}
           id="hero-heading"
-          className="max-w-2xl bg-gradient-to-br from-white via-zinc-200 to-zinc-500 bg-clip-text pb-2 font-sans text-5xl font-bold leading-tight tracking-tight text-transparent [text-wrap:balance] md:text-7xl"
+          className="max-w-2xl bg-gradient-to-br from-white via-zinc-200 to-zinc-500 bg-clip-text pb-2 font-sans text-4xl sm:text-5xl font-bold leading-tight tracking-tight text-transparent [text-wrap:balance] md:text-7xl"
         >
           The AI Flashcards App That Turns PDFs Into Active Recall
         </motion.h1>
