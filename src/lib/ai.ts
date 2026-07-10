@@ -109,7 +109,7 @@ export function getFriendlyErrorMessage(error: unknown, options: FriendlyErrorOp
 export function parseModelJson(rawText: string): unknown {
   const trimmed = rawText.trim();
 
-  const fenceMatch = trimmed.match(/^```(?:json)?\s*([\s\S]*?)\s*```$/i);
+  const fenceMatch = trimmed.match(/```(?:json)?\s*([\s\S]*?)\s*```/i);
   let unfenced = fenceMatch ? fenceMatch[1].trim() : trimmed;
 
   // AI models sometimes accidentally leave trailing commas which breaks JSON.parse
