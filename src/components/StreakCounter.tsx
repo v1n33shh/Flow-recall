@@ -14,10 +14,11 @@ function getFlameTier(streak: number): FlameTier {
   if (streak >= 14)
     return { from: "#FFFFFF", via: "#E2E8F0", to: "#94A3B8", core: "#FFFFFF" }; // God Tier — silver/white
   if (streak >= 7)
-    return { from: "#FBBF24", via: "#F59E0B", to: "#EA580C", core: "#FEF3C7" }; // Inferno — amber/orange
+    return { from: "#F43F5E", via: "#E11D48", to: "#BE123C", core: "#FFE4E6" }; // Ruby red
   if (streak >= 3)
-    return { from: "#C084FC", via: "#9333EA", to: "#7E22CE", core: "#F3E8FF" }; // Heating Up — amethyst
-  return { from: "#93C5FD", via: "#3B82F6", to: "#2563EB", core: "#DBEAFE" };   // The Spark — electric azure
+    return { from: "#FBBF24", via: "#F59E0B", to: "#EA580C", core: "#FEF3C7" }; // Inferno — amber/orange
+  // Base tier: Needs to look like a spark of fire, not a blue water drop!
+  return { from: "#FCA5A5", via: "#EF4444", to: "#B91C1C", core: "#FEE2E2" };   // The Spark — red/orange
 }
 
 /** A tiny SVG flame whose gradient evolves with the streak tier.
@@ -25,19 +26,16 @@ function getFlameTier(streak: number): FlameTier {
  *  (scale only) is identical across all tiers, so switching tier costs zero frames. */
 function TierFlame({ streak }: { streak: number }) {
   const tier = getFlameTier(streak);
-  const active = streak >= 3; // pulse starts at tier 2
+  // Always pulse to make it feel alive, but pulse harder when on fire!
+  const pulseScale = streak >= 3 ? 1.18 : 1.08;
 
   return (
     <motion.svg
       viewBox="0 0 24 24"
       className="h-4 w-4 shrink-0"
       // scale-only pulse: transform is GPU-compositable, no paint triggered.
-      animate={active ? { scale: [1, 1.18, 1] } : { scale: 1 }}
-      transition={
-        active
-          ? { duration: 1.4, repeat: Infinity, ease: "easeInOut" }
-          : { duration: 0.2 }
-      }
+      animate={{ scale: [1, pulseScale, 1] }}
+      transition={{ duration: 1.4, repeat: Infinity, ease: "easeInOut" }}
       aria-hidden="true"
     >
       <defs>
